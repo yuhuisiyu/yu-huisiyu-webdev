@@ -8,7 +8,7 @@ module.exports = function(app)
     var username = "admin";
     var password = "admin";
 
-    var connectionString = 'mongodb://'+ username + ':' + password + '@ds113628.mlab.com:13628/heroku_9bxp0pq5';
+    var connectionString = 'mongodb://'+ username + ':' + password + '@ds137261.mlab.com:37261/heroku_0mr6zxs8';
 
     if(process.env.MLAB_USERNAME) {
         connectionString = process.env.MLAB_USERNAME + ":" +
