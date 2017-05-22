@@ -99,7 +99,7 @@ a:hover{
 }
 
 @media (min-width: 768px) {
-       .col-sm-9 {
-        margin-left: 33%;
+       .col-sm-3 {
+        display:none;
     }
 }
