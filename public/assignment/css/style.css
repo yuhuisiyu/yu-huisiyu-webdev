@@ -100,6 +100,9 @@ a:hover{
 
 @media (min-width: 768px) {
        .col-sm-3 {
-        display:none;
+        display:none; 
     }
+    .col-sm-9 {
+        margin-right:20%;
+        }
 }
