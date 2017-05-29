@@ -2,17 +2,14 @@ input.form-control {
     margin-bottom: 5px;
 }
 
-body {
-    padding-top: 36px;
-}
-
 .top {
     position: absolute;
     top: 16px;
 }
 
 .right{
-    right: 10px;
+    right: 30px;
+    width: 8px;
 }
 
 .left{
@@ -43,6 +40,13 @@ a:hover{
     margin-bottom: 30px;
 }
 
+.inmiddle2 {
+    margin-top: 70px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 50px;
+}
+
 .list-group-item {
     top: 20px;
     margin: 20px 10px 20px 10px;
@@ -61,14 +65,14 @@ a:hover{
 }
 
 .zeropaddle{
-    padding-top: 0px;
-    padding-bottom: 0px;
-    padding-right: 0px;
-    padding-left: 0px;
+    padding:0px;
 }
 
 .movedown{
-    margin-top: 30px;
+    margin-top: 40px;
+}
+.movedown2{
+    margin-top: 70px;
 }
 
 .wd-widget {
@@ -105,4 +109,13 @@ a:hover{
     .col-sm-9 {
         width: 100%;
         }
+}
+
+.leftnav {
+    width:400px;
+}
+
+.rightnav{
+    width: 800px;
+    margin-left: 400px;
 }
