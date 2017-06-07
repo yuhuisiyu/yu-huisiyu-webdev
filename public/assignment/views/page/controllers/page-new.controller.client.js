@@ -15,7 +15,11 @@
         model.createPage = createPage;
 
         function init() {
-            model.pages = pageService.findPagesByWebsiteId(model.websiteId);
+            pageService.findPagesByWebsiteId(model.websiteId).then(
+                function(data) {
+                    model.pages = data;
+                }
+            );
         }
         init();
 
