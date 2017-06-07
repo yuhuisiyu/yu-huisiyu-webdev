@@ -3,14 +3,7 @@
         .module('WebAppMaker')
         .factory('pageService', pageService);
 
-    function pageService() {
-
-        var pages = [
-                { _id: "321", name: "Post 1", WebsiteId: 456, description: "Lorem" },
-                { _id: "432", name: "Post 2", WebsiteId: 456, description: "Lorem" },
-                { _id: "543", name: "Post 3", WebsiteId: 456, description: "Lorem" }
-            ]
-        ;
+    function pageService($http) {
 
         var api = {
             createPage: createPage,
@@ -22,41 +15,38 @@
         return api;
 
         function createPage(websiteId,page) {
+            var url = "/api/website/" + websiteId + "/page";
             page._id = (new Date()).getTime() + "";
             page.WebsiteId = websiteId;
-            pages.push(page);
+            $http.post(url, page);
         }
 
         function updatePage(pageId, page) {
-            var p = pages.find(function (p) {
-                return p._id === pageId;
-            });
-            p.name = page.name;
-            p.description = page.description;
+            var url = "/api/page/" + pageId;
+            $http.put(url, page);
         }
 
-            function deletePage(pageId) {
-                var page = pages.find(function (page) {
-                    return page._id === pageId;
-                });
-                var index = pages.indexOf(page);
-                pages.splice(index, 1);
-            }
+        function deletePage(pageId) {
+                var url = "/api/page/" + pageId;
+                $http.delete(url);
+        }
 
-            function findPageById(pageId) {
-                return pages.find(function (page) {
-                    return page._id === pageId;
-                });
-            }
-
-            function findPagesByWebsiteId(websiteId) {
-                var resultSet = [];
-                for (var p in pages) {
-                    if (pages[p].WebsiteId === websiteId) {
-                        resultSet.push(pages[p]);
+        function findPageById(pageId) {
+                var url = "/api/page/" + pageId;
+                return $http.get(url).then(
+                    function(response) {
+                        return response.data;
                     }
-                }
-                return resultSet;
-            }
+                );
+        }
+
+        function findPagesByWebsiteId(websiteId) {
+                var url = "/api/website/" + websiteId + "/page";
+                return $http.get(url).then(
+                    function(response) {
+                        return response.data;
+                    }
+                );
+        }
     }
 })();
