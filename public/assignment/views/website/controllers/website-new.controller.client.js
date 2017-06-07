@@ -14,7 +14,11 @@
         model.createWebsite = createWebsite;
 
         function init() {
-            model.websites = websiteService.findWebsitesByUser(model.userId);
+            websiteService.findWebsitesByUser(model.userId).then(
+                function(data) {
+                    model.websites = data;
+                }
+            );
         }
         init();
 
