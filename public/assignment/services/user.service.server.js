@@ -13,16 +13,6 @@ module.exports = function(app) {
             {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
         ];
 
-        var api = {
-            createUser: createUser,
-            findUserByCredentials: findUserByCredentials,
-            findUserById: findUserById,
-            findUserByUsername: findUserByUsername,
-            updateUser: updateUser,
-            deleteUser: deleteUser
-        };
-        return api;
-
         function createUser(req, res) {
             var user = req.body;
             users.push(user);

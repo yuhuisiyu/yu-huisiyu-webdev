@@ -11,15 +11,6 @@ module.exports = function(app) {
             { _id: "543", name: "Post 3", WebsiteId: "456", description: "Lorem" }
         ];
 
-    var api = {
-        createPage: createPage,
-        findPagesByWebsiteId: findPagesByWebsiteId,
-        findPageById: findPageById,
-        updatePage: updatePage,
-        deletePage: deletePage
-    };
-    return api;
-
     function createPage(req,res) {
         var page = req.body;
         pages.push(page);

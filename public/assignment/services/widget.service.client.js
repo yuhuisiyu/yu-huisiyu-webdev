@@ -3,7 +3,7 @@
         .module('WebAppMaker')
         .factory('widgetService', widgetService);
 
-    function widgetService($http) {
+    function widgetService($http, $routeParams) {
 
         var api = {
             createWidget: createWidget,
@@ -11,7 +11,7 @@
             findWidgetById: findWidgetById,
             updateWidget: updateWidget,
             deleteWidget: deleteWidget,
-            //sortList: sortList
+            sortWidget: sortWidget
         };
         return api;
 
@@ -47,6 +47,11 @@
                     return response.data;
                 }
             );
+        }
+
+        function sortWidget(initial, final) {
+            var url = "/page/" + $routeParams['pid'] + "/widget?initial=" + initial + "&final=" + final;
+            $http.put(url);
         }
     }
 })();

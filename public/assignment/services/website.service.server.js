@@ -15,15 +15,6 @@ module.exports = function(app) {
         { _id: "789", name: "Chess",       developerId: "234", description: "Lorem" }
     ];
 
-    var api = {
-        createWebsite: createWebsite,
-        findWebsitesByUser: findWebsitesByUser,
-        findWebsiteById: findWebsiteById,
-        updateWebsite: updateWebsite,
-        deleteWebsite: deleteWebsite
-    };
-    return api;
-
     function createWebsite(req,res) {
         var website = req.body;
         websites.push(website);
