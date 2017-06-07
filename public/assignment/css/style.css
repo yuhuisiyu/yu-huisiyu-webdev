@@ -53,6 +53,10 @@ a:hover{
     border: hidden;
 }
 
+.paddledown{
+    padding-bottom: 50px;
+}
+
 .leftside {
     height: 100vh;
     border-right: thin solid;
