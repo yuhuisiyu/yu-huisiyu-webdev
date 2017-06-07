@@ -27,8 +27,8 @@
         }
         init();
 
-        function getEditor(Type) {
-            return 'views/widget/editors/widget-' +Type.toLowerCase() + '-edit.view.client.html';
+        function getEditor() {
+            return 'views/widget/editors/widget-' + model.widget.widgetType.toLowerCase() + '-edit.view.client.html';
         }
 
         function deleteWidget() {
