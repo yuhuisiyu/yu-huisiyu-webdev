@@ -12,12 +12,18 @@
         model.websiteId = $routeParams['wid'];
         model.pageId = $routeParams['pid'];
         model.widgetId = $routeParams['wgid'];
+
+        //event handlers
         model.deleteWidget = deleteWidget;
         model.updateWidget = updateWidget;
         model.getEditor = getEditor;
 
         function init() {
-            model.widget = widgetService.findWidgetById(model.widgetId);
+           widgetService.findWidgetById(model.widgetId).then(
+                function(data) {
+                    model.widget = data;
+                }
+            );
         }
         init();
 

@@ -17,7 +17,11 @@
         model.getWidgetUrlForType = getWidgetUrlForType;
 
         function init() {
-            model.widgets = widgetService.findWidgetsByPageId(model.pageId);
+           widgetService.findWidgetsByPageId(model.pageId).then(
+                function (data) {
+                    model.widgets = data;
+                }
+            );
         }
         init();
 

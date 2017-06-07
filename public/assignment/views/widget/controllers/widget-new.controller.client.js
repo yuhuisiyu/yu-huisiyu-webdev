@@ -8,16 +8,46 @@
         model.userId = $routeParams['uid'];
         model.websiteId = $routeParams['wid'];
         model.pageId = $routeParams['pid'];
-        model.navigateWidget = navigateWidget;
+        model.createWidget = createWidget;
 
         function init() {
-            model.widgets = widgetService.findWidgetsByPageId(model.pageId);
+            widgetService.findWidgetsByPageId(model.pageId).then(
+                function (data) {
+                    model.widgets = data;
+                }
+            );
         }
         init();
 
-        function navigateWidget(widgetType) {
-            var newwidget = widgetService.createWidget(widgetType,model.pageId);
-            console.log(newwidget);
+        function createWidget(type) {
+            if (type === "HEADING") {
+                var newwidget = {
+                    _id: (new Date()).getTime() + "",
+                    widgetType: type,
+                    pageId: model.pageId,
+                    size: "",
+                    text: "",
+                }
+            }
+            if (type === "IMAGE") {
+                var newwidget = {
+                    _id: (new Date()).getTime() + "",
+                    widgetType: type,
+                    pageId: model.pageId,
+                    width: "",
+                    url: ""
+                };
+            }
+            if (type === "YOUTUBE") {
+                var newwidget = {
+                    _id: (new Date()).getTime() + "",
+                    widgetType: type,
+                    pageId: model.pageId,
+                    width: "",
+                    url: ""
+                };
+            }
+            widgetService.createWidget(newwidget);
             $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget/" + newwidget._id);
         }
     }
