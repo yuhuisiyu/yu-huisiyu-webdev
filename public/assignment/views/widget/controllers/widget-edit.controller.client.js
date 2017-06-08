@@ -27,8 +27,17 @@
         }
         init();
 
-        function getEditor() {
-            return 'views/widget/editors/widget-' + model.widget.widgetType.toLowerCase() + '-edit.view.client.html';
+        function getEditor(widgetType) {
+            if (widgetType === "HEADING") {
+                var html = 'views/widget/editors/widget-heading-edit.view.client.html';
+            }
+            if (widgetType === "IMAGE") {
+                var html = 'views/widget/editors/widget-image-edit.view.client.html';
+            }
+            if (widgetType === "YOUTUBE") {
+                var html = 'views/widget/editors/widget-youtube-edit.view.client.html';
+            }
+            return html;
         }
 
         function deleteWidget() {
