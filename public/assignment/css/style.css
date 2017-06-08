@@ -53,10 +53,6 @@ a:hover{
     border: hidden;
 }
 
-.paddledown{
-    padding-bottom: 50px;
-}
-
 .leftside {
     height: 100vh;
     border-right: thin solid;
@@ -122,4 +118,20 @@ a:hover{
 .rightnav{
     width: 800px;
     margin-left: 400px;
+}
+
+.paddledown{
+    padding-bottom: 50px;
+}
+
+.searchbar{
+    top: 60px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.pictures{
+    padding-top: 70px;
+    padding-left: 100px;
+
 }
