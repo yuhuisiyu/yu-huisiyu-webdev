@@ -12,7 +12,7 @@
             var found = userService.findUserByCredentials(username, password).then(login);
 
             function login(found){
-                if(found !== "") {
+                if(found !== null) {
                     $location.url('/user/' + found._id);
                 } else {
                     model.message = "Username:" + username + " not found, please try again";

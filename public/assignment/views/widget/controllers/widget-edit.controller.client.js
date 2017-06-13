@@ -24,6 +24,11 @@
                     model.widget = data;
                 }
             );
+            widgetService.findWidgetsByPageId(model.pageId).then(
+                function(data) {
+                    model.widgets = data;
+                }
+            );
         }
         init();
 
@@ -36,6 +41,12 @@
             }
             if (widgetType === "YOUTUBE") {
                 var html = 'views/widget/editors/widget-youtube-edit.view.client.html';
+            }
+            if (widgetType === "TEXT") {
+                var html = 'views/widget/editors/widget-text-edit.view.client.html';
+            }
+            if (widgetType === "HTML") {
+                var html = 'views/widget/editors/widget-html-edit.view.client.html';
             }
             return html;
         }

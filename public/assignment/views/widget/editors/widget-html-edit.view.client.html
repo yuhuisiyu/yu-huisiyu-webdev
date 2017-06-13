@@ -1,0 +1,12 @@
+<div class="container-fluid editor">
+    <b>Name</b>
+    <br/>
+    <input class="form-control" ng-model="model.widget.name" type="text" placeholder="Name">
+    <div ng-model="model.widget.text"
+         id="htmlEditor"
+         text-angular
+         ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+        ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+        ['indent','outdent'],['html']]">
+    </div>
+</div>

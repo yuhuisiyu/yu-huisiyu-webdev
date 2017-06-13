@@ -21,18 +21,20 @@
             userService.findUserByUsername(username).then (
                 function(data) {
                     var found = data;
-                    if(found !== "") {
+                    if(found !== null) {
                         model.error = "Username is not available";
                     } else {
                         var user = {
-                            _id: (new Date()).getTime() + "",
                             username:username,
-                            password:password,
-                            firstName:"",
-                            lastName:""
+                            password:password
                         }
                         userService.createUser(user);
-                        $location.url('/user/' + user._id);
+                        userService.findUserByUsername(user.username).then(
+                            function(user) {
+                                var id = user._id;
+                                $location.url('/user/' + id);
+                            }
+                        );
                     }
                 }
             )

@@ -33,6 +33,7 @@
         // implementation
         function updateWebsite(website) {
             websiteService.updateWebsite(model.websiteId,website);
+            console.log("website");
             $location.url('/user/'+model.userId+'/website');
         }
 

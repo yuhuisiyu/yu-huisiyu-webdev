@@ -38,9 +38,9 @@
             return $sce.trustAsResourceUrl(embedUrl);
         }
 
-        function trustThisContent(html) {
+        function trustThisContent(widget) {
             // diligence to scrub any unsafe content
-            return $sce.trustAsHtml(html);
+            return $sce.trustAsHtml(widget.text);
         }
     }
 })();

@@ -16,9 +16,9 @@
 
         function createWebsite(userId,website) {
             var url = "/api/user/" + userId + "/website";
-                website._id = (new Date()).getTime() + "";
-                website.developerId = userId;
-                $http.post(url, website);
+            website._user = userId;
+            $http.post(url, website);
+            console.log("client");
         }
 
         function updateWebsite(websiteId, website) {

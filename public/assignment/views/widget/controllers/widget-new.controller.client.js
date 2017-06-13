@@ -20,35 +20,17 @@
         init();
 
         function createWidget(type) {
-            if (type === "HEADING") {
-                var newwidget = {
-                    _id: (new Date()).getTime() + "",
-                    widgetType: type,
-                    pageId: model.pageId,
-                    size: "",
-                    text: "",
+            var widget = {
+                name: "",
+                widgetType: widgetType,
+                pageId: model.pageId
+            };
+            WidgetService.createWidget(model.pageId, widget).then(
+                function (response) {
+                    var createdId = response.insertedIds[0];
+                    $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + createdId);
                 }
-            }
-            if (type === "IMAGE") {
-                var newwidget = {
-                    _id: (new Date()).getTime() + "",
-                    widgetType: type,
-                    pageId: model.pageId,
-                    width: "",
-                    url: ""
-                };
-            }
-            if (type === "YOUTUBE") {
-                var newwidget = {
-                    _id: (new Date()).getTime() + "",
-                    widgetType: type,
-                    pageId: model.pageId,
-                    width: "",
-                    url: ""
-                };
-            }
-            widgetService.createWidget(newwidget);
-            $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget/" + newwidget._id);
+            );
         }
     }
 })();

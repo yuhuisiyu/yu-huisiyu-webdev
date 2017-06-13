@@ -91,16 +91,20 @@ a:hover{
     opacity: 0.8;
 }
 
-.video {
-    position:relative;
-    padding-bottom:70%;
-    height:0;
+.youtube-widget {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
 }
 
-.video iframe,
-.video object,
-.video embed { position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;
+.youtube-widget iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
+
 
 @media (min-width: 768px) {
        .col-sm-3 {
@@ -134,4 +138,12 @@ a:hover{
     padding-top: 70px;
     padding-left: 100px;
 
+}
+
+.button{
+    width: 721px;
+    margin-left: 30px;
+}
+.wd-toolbar{
+    z-index: 4;
 }

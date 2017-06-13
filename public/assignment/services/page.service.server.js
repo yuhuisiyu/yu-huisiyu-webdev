@@ -4,60 +4,52 @@ module.exports = function(app) {
     app.get("/api/page/:pageId", findPageById);
     app.put("/api/page/:pageId", updatePage);
     app.delete("/api/page/:pageId", deletePage);
+    var pageModel = require("../model/page/page.model.server");
 
-    var pages = [
-            { _id: "321", name: "Post 1", WebsiteId: "456", description: "Lorem" },
-            { _id: "432", name: "Post 2", WebsiteId: "456", description: "Lorem" },
-            { _id: "543", name: "Post 3", WebsiteId: "456", description: "Lorem" }
-        ];
 
     function createPage(req,res) {
         var page = req.body;
-        pages.push(page);
-        res.json(pages);
+        pageModel.createPage(page).then(
+            function (response) {
+                res.send(response);
+            }
+        );
     }
 
     function updatePage(req, res) {
         var pageId = req.params["pageId"];
-        var p = pages.find(function (p) {
-            return p._id === pageId;
-        });
         var page = req.body;
-        p.name = page.name;
-        p.description = page.description;
-        res.json(pages);
+        pageModel.updatePage(pageId, page).then(
+            function(response) {
+                res.json(response);
+            }
+        );
     }
 
     function deletePage(req,res) {
         var pageId = req.params["pageId"];
-        var page = pages.find(function (page) {
-            return page._id === pageId;
-        });
-        var index = pages.indexOf(page);
-        pages.splice(index, 1);
-        res.json(pages);
+        pageModel.deletePage(pageId).then(
+            function(response) {
+                res.json(response);
+            }
+        );
     }
 
     function findPageById(req,res) {
         var pageId = req.params["pageId"];
-        var p = pages.find(function (page) {
-            return page._id === pageId;
-        });
-        if(typeof p === 'undefined'){
-            res.send(null);
-            return;
-        }
-        return res.json(p);
+        pageModel.findPageById(pageId).then(
+            function(page) {
+                res.json(page);
+            }
+        );
     }
 
     function findPagesByWebsiteId(req,res) {
         var websiteId = req.params["websiteId"];
-        var resultSet = [];
-        for (var p in pages) {
-            if (pages[p].WebsiteId === websiteId) {
-                resultSet.push(pages[p]);
+        pageModel.findAllPagesForWebsite(websiteId).then(
+            function (websites) {
+                res.json(websites);
             }
-        }
-        res.send(resultSet);
+        )
     }
 };

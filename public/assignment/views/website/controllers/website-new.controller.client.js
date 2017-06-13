@@ -25,6 +25,7 @@
         // implementation
         function createWebsite(website) {
             websiteService.createWebsite(model.userId,website);
+            console.log("controller");
             $location.url('/user/'+model.userId+'/website');
         }
     }
