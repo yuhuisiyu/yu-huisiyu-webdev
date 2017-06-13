@@ -18,7 +18,7 @@
 
 
 <div class="container-fluid movedown paddledown" wd-draggable>
-    <div ng-repeat="widget in model.widgets"
+    <div ng-repeat="widget in model.widgets track by $index"
          class="wd-widget">
         <div class="wd-toolbar">
             <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">

@@ -26,8 +26,23 @@
         init();
 
         //implementations
-        function getWidgetUrlForType(type) {
-            return 'views/widget/templates/widget-'+type.toLowerCase()+'.view.client.html';
+        function getWidgetUrlForType(widgetType) {
+            if (widgetType === "HEADING") {
+                var html = 'views/widget/templates/widget-heading.view.client.html';
+            }
+            if (widgetType === "IMAGE") {
+                var html = 'views/widget/templates/widget-image.view.client.html';
+            }
+            if (widgetType === "YOUTUBE") {
+                var html = 'views/widget/templates/widget-youtube.view.client.html';
+            }
+            if (widgetType === "TEXT") {
+                var html = 'views/widget/templates/widget-text.view.client.html';
+            }
+            if (widgetType === "HTML") {
+                var html = 'views/widget/templates/widget-html.view.client.html';
+            }
+            return html;
         }
 
         function getYouTubeEmbedUrl(youTubeLink) {

@@ -14,7 +14,6 @@ module.exports = function(app) {
                 res.send(response);
             }
         );
-        console.log("server");
     }
 
     function updateWebsite(req, res) {

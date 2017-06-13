@@ -12,5 +12,16 @@
         Formatted
         <br/>
         <input ng-model="model.widget.formatted" class="" type="checkbox"/>
+        <br>
+        <a ng-click="model.updateWidget(model.widget)"
+           class="btn btn-block btn-success">
+            Update
+        </a>
+        <a ng-click="model.deleteWidget(model.widgetId)"
+           class="btn btn-block btn-danger">
+            Delete
+        </a>
     </div>
+
+
 </div>

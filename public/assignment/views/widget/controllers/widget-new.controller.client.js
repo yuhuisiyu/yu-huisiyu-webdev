@@ -22,15 +22,17 @@
         function createWidget(type) {
             var widget = {
                 name: "",
-                widgetType: widgetType,
+                widgetType: type,
                 pageId: model.pageId
             };
-            WidgetService.createWidget(model.pageId, widget).then(
+            widgetService.createWidget(model.pageId, widget).then(
                 function (response) {
                     var createdId = response.insertedIds[0];
                     $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + createdId);
                 }
             );
         }
+
+
     }
 })();

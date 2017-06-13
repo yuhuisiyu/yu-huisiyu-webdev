@@ -18,7 +18,6 @@
             var url = "/api/user/" + userId + "/website";
             website._user = userId;
             $http.post(url, website);
-            console.log("client");
         }
 
         function updateWebsite(websiteId, website) {

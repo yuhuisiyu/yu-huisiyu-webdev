@@ -18,7 +18,6 @@ function createWebsiteForUser(website) {
         .create(website)
         .then(function () {
             userModel.updateWebsiteList(website._user, website._id);
-            console.log("model");
         })
 }
 

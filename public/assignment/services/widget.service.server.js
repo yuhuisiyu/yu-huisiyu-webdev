@@ -28,22 +28,22 @@ module.exports = function (app) {
         var size = myFile.size;
         var mimetype = myFile.mimetype;
 
-        findWidgetWithId(widgetId).then(
+        findWidget(widgetId).then(
             function (widget) {
                 var widget = widget;
                 widget.url = '/assignment/uploads/' + filename;
-                widgetModel.updateWidget(widgetId, newWidget).then(
+                widgetModel.updateWidget(widgetId, widget).then(
                     function (response) {
                         res.send(response);
-                    }
-                );
+                    });
                 var callbackUrl = "/assignment/index.html#!/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/";
                 res.redirect(callbackUrl);
-            });
+            }
+        );
 
     }
 
-    function findWidgetWithId(widgetId) {
+    function findWidget(widgetId) {
         return widgetModel.findWidgetById(widgetId).then(
             function (widget) {
                 return widget;
@@ -52,8 +52,9 @@ module.exports = function (app) {
     }
 /////////////////////////////////////////////
 
-    function createWidget(req,res) {
+    function createWidget(req, res) {
         var widget = req.body;
+        var pageId = req.params['pageId'];
         widgetModel.createWidget(widget).then(
             function (response) {
                 res.send(response);

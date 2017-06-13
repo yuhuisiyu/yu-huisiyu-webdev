@@ -15,10 +15,15 @@
         };
         return api;
 
-        function createWidget(newwidget,pageId) {
+        function createWidget(pageId, widget) {
             var url = "/api/page/" + pageId + "/widget";
-            $http.post(url, newwidget);
-            }
+            widget.pageId = pageId;
+            return $http.post(url, widget).then(
+                function (response) {
+                    return response.data;
+                }
+            )
+        }
 
 
         function updateWidget(widgetId, widget) {

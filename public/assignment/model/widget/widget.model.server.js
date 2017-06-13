@@ -13,11 +13,14 @@ widgetModel.updateWidgetOrder = updateWidgetOrder;
 widgetModel.findWidgetByIds = findWidgetByIds;
 
 function createWidget(widget) {
-    return widgetModel.create(widget)
-        .then(function () {
-            pageModel.updateWidgetList(widget._page, widget._id);
+    return widgetModel.collection.insert(widget).then(
+        function (widget) {
+            var pageId = widget.ops[0].pageId;
+            var widgetId = widget.ops[0]._id;
+            pageModel.updateWidgetList(pageId, widgetId);
             return widget;
-        })
+        }
+    );
 }
 
 function findAllWidgetsForPage(pageId) {

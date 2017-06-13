@@ -16,8 +16,6 @@
 
         function createPage(websiteId,page) {
             var url = "/api/website/" + websiteId + "/page";
-            page._id = (new Date()).getTime() + "";
-            page.WebsiteId = websiteId;
             $http.post(url, page);
         }
 
