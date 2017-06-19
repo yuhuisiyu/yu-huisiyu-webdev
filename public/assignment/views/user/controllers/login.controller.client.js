@@ -7,17 +7,31 @@
 
         var model = this;
 
-        model.login = function (username, password) {
+        model.login = login;
 
-            var found = userService.findUserByCredentials(username, password).then(login);
+        function login (username, password) {
+            var user = {
+                username:username,
+                password:password
+            };
+            userService
+                //.findUserByCredentials(username, password)
+                //change for assignment6
+                .login(user)
+                .then(
+                    function (response) {
+                        $location.url('/profile');
+                    },
+                    model.message = "Username:" + username + " not found, please try again"
+                )
 
-            function login(found){
-                if(found !== null) {
-                    $location.url('/user/' + found._id);
-                } else {
-                    model.message = "Username:" + username + " not found, please try again";
-                }
-            }
-        };
+            // function login(found){
+            //     if(found !== null) {
+            //         $location.url('/profile');
+            //     } else {
+            //         model.message = "Username:" + username + " not found, please try again";
+            //     }
+            // }
+        }
     }
 })();

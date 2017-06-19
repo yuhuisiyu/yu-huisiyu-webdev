@@ -11,9 +11,35 @@
             findUserById: findUserById,
             findUserByUsername: findUserByUsername,
             updateUser: updateUser,
-            deleteUser: deleteUser
+            deleteUser: deleteUser,
+            login:login,
+            register: register,
+            logout:logout,
+            checkLoggedIn:checkLoggedIn
         };
         return api;
+
+        //assignment6
+        function login(user) {
+            return $http.post("/api/login", user);
+        }
+
+        function logout() {
+            return $http.post("/api/logout");
+        }
+
+        function register(user) {
+            return $http.post("/api/register", user);
+        }
+
+        function checkLoggedIn() {
+            var url = "/api/checkLoggedIn";
+            return $http.get(url)
+                .then(function(response) {
+                    return response.data;
+                });
+        }
+        //////////////////////////////////////////////////
 
         function createUser(user) {
             var url = "/api/user";

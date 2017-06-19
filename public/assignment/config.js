@@ -20,10 +20,11 @@
                 controller: 'registerController',
                 controllerAs: 'model'
             })
-            .when('/user/:uid', {
+            .when('/profile', {
                 templateUrl: 'views/user/templates/profile.view.client.html',
                 controller: 'profileController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: { currentUser: checkLoggedIn }
             })
             .when('/user/:uid/website', {
                 templateUrl: 'views/website/templates/website-list.view.client.html'
@@ -77,4 +78,21 @@
             })
 
     }
+
+    function checkLoggedIn($q,$location,userService) {
+        var deferred = $q.defer();
+        userService
+            .checkLoggedIn()
+            .then(function(user) {
+                if (user !== '0') {
+                    deferred.resolve(user);
+                } else {
+                    deferred.reject();
+                    $location.url('/login');
+                }
+            });
+        return deferred.promise;
+    }
+
+
 })();
