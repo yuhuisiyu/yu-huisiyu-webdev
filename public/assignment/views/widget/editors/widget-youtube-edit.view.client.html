@@ -1,8 +1,8 @@
 <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" placeholder="Video Name">
+        <input type="text" class="form-control" id="name" placeholder="Video Name" ng-model="model.widget.name">
         <label for="text">Text</label>
-        <input type="text" class="form-control" id="text" placeholder="Content">
+        <input type="text" class="form-control" id="text" placeholder="Content" ng-model="model.widget.text">
         <label for="url">URL</label>
         <input id="url"
                class="form-control" type="url" placeholder="www.google.com" ng-model="model.widget.url">
@@ -18,4 +18,8 @@
            class="btn btn-block btn-danger">
             Delete
         </a>
+    <br>
+    <div ng-show="model.message" class="alert alert-danger">
+        {{model.message}}
+    </div>
     </div>

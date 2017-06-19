@@ -12,6 +12,10 @@
 
         // implementation
         function register(username, password, password2) {
+            if(password === undefined || password2 === undefined || username === "") {
+                model.message = "Please enter all blanks.";
+                return;
+            }
 
             if(password !== password2) {
                 model.error = "Passwords must match.";

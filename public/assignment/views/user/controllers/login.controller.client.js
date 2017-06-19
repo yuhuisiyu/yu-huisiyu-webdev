@@ -10,6 +10,14 @@
         model.login = login;
 
         function login (username, password) {
+            if(username === "") {
+                model.message = "Please enter username.";
+                return;
+            }
+            if(password === undefined) {
+                model.message = "Please enter password.";
+                return;
+            }
             var user = {
                 username:username,
                 password:password

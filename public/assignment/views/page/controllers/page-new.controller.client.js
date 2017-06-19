@@ -25,6 +25,10 @@
 
         // implementation
         function createPage(page) {
+            if(page === undefined || page.name === undefined){
+                model.message = "Please write page name.";
+                return;
+            }
             pageService.createPage(model.websiteId,page);
             $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page');
         }

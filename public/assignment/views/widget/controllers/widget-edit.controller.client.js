@@ -57,6 +57,10 @@
         }
 
         function updateWidget() {
+            if(model.widget.name === "" || model.widget.name === undefined) {
+                model.message = "Please enter the name.";
+                return;
+            }
             widgetService.updateWidget(model.widgetId, model.widget);
             $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
         }

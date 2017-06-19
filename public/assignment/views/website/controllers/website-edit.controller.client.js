@@ -32,6 +32,10 @@
 
         // implementation
         function updateWebsite(website) {
+            if(website === undefined || website.name === ""){
+                model.message = "Please write website name.";
+                return;
+            }
             websiteService.updateWebsite(model.websiteId,website);
             console.log("website");
             $location.url('/user/'+model.userId+'/website');

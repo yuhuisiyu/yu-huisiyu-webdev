@@ -7,6 +7,10 @@ var userSchema = mongoose.Schema({
     email: String,
     phone: String,
     _websites: [{type: mongoose.Schema.Types.ObjectId, ref: "websiteModel"}],
+    facebook: {
+        id: String,
+        token: String
+    },
     dateCreated: {type: Date, default: Date.now()}},
     {collection: 'yuhuisiyu-webdev.user'});
 module.exports = userSchema;

@@ -32,6 +32,10 @@
 
         // implementation
         function updatePage(page) {
+            if(page === undefined || page.name === ""){
+                model.message = "Please write page name.";
+                return;
+            }
             pageService.updatePage(model.pageId,page);
             $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page');
         }

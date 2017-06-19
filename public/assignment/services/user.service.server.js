@@ -1,7 +1,9 @@
 module.exports = function(app) {
     var userModel = require("../model/user/user.model.server");
     var passport = require('passport');
+    var bcrypt = require("bcrypt-nodejs");
     var LocalStrategy = require('passport-local').Strategy;
+    var FacebookStrategy = require('passport-facebook').Strategy;
 
     app.post("/api/user", createUser);
     app.get("/api/user", findUserByUsername);
@@ -14,15 +16,49 @@ module.exports = function(app) {
     app.get ('/api/checkLoggedIn', checkLoggedIn);
     app.post('/api/logout', logout);
     app.post ('/api/register', register);
+    app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+    app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+        successRedirect: '/assignment/index.html#!/profile',
+        failureRedirect: '/assignment/index.html#!/login'
+        }));
+
+    var facebookConfig = {
+        clientID     : process.env.FACEBOOK_CLIENT_ID,
+        clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
+        callbackURL  : process.env.FACEBOOK_CALLBACK_URL
+    };
+
+    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+    function facebookStrategy(token, refreshToken, profile, done) {
+        return userModel.findUserByFacebookId(profile.id).then(
+            function (user) {
+                if (!user) {
+                    var newUser = {
+                        username: profile.displayName,
+                        facebook: {
+                            id: profile.id,
+                            token: token
+                        }
+                    };
+                    return userModel.createUser(newUser).then(
+                        function (response) {
+                            return done(null, newUser);
+                        }
+                    )
+                }
+                return done(null, user);
+            }
+        )
+    }
 
 
     passport.use(new LocalStrategy(localStrategy));
     function localStrategy(username, password, done) {
         userModel
-            .findUserByCredentials(username, password)
+            .findUserByUsername(username)
             .then(
                 function(user) {
-                    if(user.username === username && user.password === password) {
+                    if(user && bcrypt.compareSync(password, user.password)) {
                         return done(null, user);
                     } else {
                         return done(null, false);
@@ -61,6 +97,7 @@ module.exports = function(app) {
 
     function register (req, res) {
         var user = req.body;
+        user.password = bcrypt.hashSync(user.password);
         userModel
             .createUser(user)
     .then(
@@ -87,6 +124,8 @@ module.exports = function(app) {
     function checkLoggedIn(req, res) {
         res.send(req.isAuthenticated() ? req.user : '0');
     }
+
+
 
 ///////////////////////////////
 

@@ -24,6 +24,10 @@
 
         // implementation
         function createWebsite(website) {
+            if(website === undefined || website.name === undefined){
+                model.message = "Please write website name.";
+                return;
+            }
             websiteService.createWebsite(model.userId,website);
             $location.url('/user/'+model.userId+'/website');
         }
