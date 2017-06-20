@@ -19,7 +19,9 @@ function findUserByFacebookId(facebookId) {
 
 
 function createUser(user) {
-    return userModel.create(user);
+     var userResult = userModel.collection.insert(user);
+    return userResult;
+//     return userModel.create(user);
 }
 
 function findUserById(userId) {
