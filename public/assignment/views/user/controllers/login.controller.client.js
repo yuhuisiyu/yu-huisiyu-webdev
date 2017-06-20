@@ -9,28 +9,32 @@
 
         model.login = login;
 
-        function login (username, password) {
-            if(username === "") {
+        function login (user) {
+            if(user.username === "" || user.username === undefined) {
                 model.message = "Please enter username.";
                 return;
             }
-            if(password === undefined) {
+            if(user.password === undefined || user.username === "") {
                 model.message = "Please enter password.";
                 return;
             }
-            var user = {
-                username:username,
-                password:password
-            };
+            // var user = {
+            //     username:username,
+            //     password:password
+            // };
             userService
                 //.findUserByCredentials(username, password)
                 //change for assignment6
                 .login(user)
                 .then(
                     function (response) {
+                        user = response.data;
                         $location.url('/profile');
                     },
-                    model.message = "Username:" + username + " not found, please try again"
+                    function (err) {
+                        model.message = "Username:" + user.username + " not found, please try again";
+                    }
+                    // model.message = "Username:" + username + " not found, please try again"
                 )
 
             // function login(found){
