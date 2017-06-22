@@ -30,7 +30,7 @@ module.exports = function(app) {
 
     passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
     function facebookStrategy(token, refreshToken, profile, done) {
-        return userModel.findUserByFacebookId(profile.id).then(
+       userModel.findUserByFacebookId(profile.id).then(
             function (user) {
                 if (!user) {
                     var newUser = {
