@@ -24,7 +24,7 @@
 
         // implementation
         function createWebsite(website) {
-            if(website === undefined || website.name === undefined){
+            if(website === undefined || website.name === undefined || website.name === ""){
                 model.message = "Please write website name.";
                 return;
             }

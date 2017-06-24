@@ -32,7 +32,7 @@
 
         // implementation
         function updatePage(page) {
-            if(page === undefined || page.name === ""){
+            if(page === undefined || page.name === "" || page.name === undefined){
                 model.message = "Please write page name.";
                 return;
             }
