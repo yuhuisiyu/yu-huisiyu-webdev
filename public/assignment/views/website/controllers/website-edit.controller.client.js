@@ -32,7 +32,7 @@
 
         // implementation
         function updateWebsite(website) {
-            if(website === undefined || website.name === ""){
+            if(website === undefined || website.name === "" || website.name === undefined){
                 model.message = "Please write website name.";
                 return;
             }
