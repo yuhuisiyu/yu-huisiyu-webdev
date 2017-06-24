@@ -10,7 +10,7 @@
         model.login = login;
 
         function login (user) {
-            if(user.username === "" || user.username === undefined) {
+            if(user.username === "" || user.username === undefined || user === undefined) {
                 model.message = "Please enter username.";
                 return;
             }
