@@ -22,6 +22,7 @@ function createUser(user) {
 //      var userResult = userModel.collection.insert(user);
 //     return userResult;
  return userModel.create(user);
+//     return userModel.collection.insert(user);
 }
 
 function findUserById(userId) {

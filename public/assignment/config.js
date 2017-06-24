@@ -2,7 +2,6 @@
     angular
         .module("WebAppMaker", ["ngRoute", "textAngular"])
         .config(configuration);
-
     function configuration($routeProvider) {
         $routeProvider
             .when('/', {
