@@ -25,7 +25,7 @@
 
         // implementation
         function createPage(page) {
-            if(page === undefined || page.name === undefined){
+            if(page === undefined || page.name === undefined || page.name === ""){
                 model.message = "Please write page name.";
                 return;
             }
