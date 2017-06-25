@@ -6,7 +6,6 @@ var cleanCSS = require('gulp-clean-css');
 var rename = require("gulp-rename");
 var uglify = require('gulp-uglify');
 var filter = require('gulp-filter');
-var pkg = require('./package.json');
 
 // Set the banner content
 var banner = ['/*!\n',
